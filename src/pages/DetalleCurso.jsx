@@ -7,6 +7,7 @@ import Footer from "../components/Footer";
 import RegistroForm from "../components/RegistroForm";
 import { consultarCurso, obtenerCursoEnCache } from "../cursoService.js";
 import { fadeUp } from "../animations/variants.js";
+import { setSeo } from "../seo";
 
 
 const revealOnScroll = {
@@ -32,7 +33,6 @@ function obtenerPublicosDirigidos(valor) {
     .filter(Boolean);
 }
 
-
 function DetalleCurso() {
 
   const { id } = useParams();
@@ -40,6 +40,24 @@ function DetalleCurso() {
   const [curso, setCurso] = useState(() => obtenerCursoEnCache(id));
   const [cargando, setCargando] = useState(() => !obtenerCursoEnCache(id));
   const [error, setError] = useState("");
+
+  useEffect(() => {
+
+    if (!curso) return;
+
+    setSeo({
+      title:
+        `${curso.title} | Talentia`,
+
+      description:
+        curso.description ||
+        `Conoce el programa ${curso.title} de Talentia.`,
+
+      path:
+        `/curso/${curso.id}`
+    });
+
+  }, [curso]);
 
 
   /* =========================================================

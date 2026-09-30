@@ -3,12 +3,25 @@ import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { renderCatalog } from "../../js/app.js";
+import { setSeo } from "../seo";
 
 function Cursos() {
   const navigate = useNavigate();
 
   useEffect(() => {
-        renderCatalog();
+
+    setSeo({
+      title:
+        "Cursos y Especializaciones | Talentia",
+
+      description:
+        "Explora los cursos y especializaciones profesionales de Talentia en distintas áreas de formación.",
+
+      path: "/cursos"
+    });
+
+    renderCatalog();
+
   }, []);
 
   const abrirCurso = (event) => {

@@ -7,6 +7,7 @@ import { motion } from "motion/react";
 import { fadeUp, staggerContainer, fadeUpItem, cardHover } from "../animations/variants.js";
 import AnimatedCounter from "../animations/AnimatedCounter";
 import { renderFeaturedCourses } from "../../js/app.js";
+import { setSeo } from "../seo";
 
 
 function Home() {
@@ -21,6 +22,20 @@ function Home() {
         event.preventDefault();
         navigate(enlace.getAttribute("href"));
     };
+
+    useEffect(() => {
+
+        setSeo({
+            title:
+            "Talentia | Escuela de Especialización Profesional",
+
+            description:
+            "Talentia ofrece especializaciones profesionales, cursos y programas de formación corporativa para impulsar el desarrollo profesional.",
+
+            path: "/"
+        });
+
+    }, []);
 
     useEffect(() => {
         renderFeaturedCourses();
