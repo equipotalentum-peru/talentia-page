@@ -20,12 +20,13 @@ export async function registrarAlumno(datos) {
   await setDoc(
     doc(db, "FormularioAlumno", id),
     {
-      nombre: datos.nombre,
-      dni: datos.dni,
-      email: datos.email,
-      telefono: datos.telefono,
-      interes: datos.interes,
-      fecha_registro: serverTimestamp()
+       nombre: datos.nombre,
+       dni: datos.dni,
+       email: datos.email,
+       telefono: datos.telefono,
+       tipo_alumno: datos.tipo_alumno,
+       interes: datos.interes,
+       fecha_registro: serverTimestamp()
     }
   );
 

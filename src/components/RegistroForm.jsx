@@ -148,6 +148,7 @@ function RegistroForm({tipo, cursoSeleccionado = null}) {
 
   const formulario = formularios[tipo];
   const [interesSeleccionado, setInteresSeleccionado] = useState("");
+  const [tipoAlumno, setTipoAlumno] = useState("");
   const [cursos, setCursos] = useState([]);
   const [enviando, setEnviando] = useState(false);
   const [errores, setErrores] = useState({});
@@ -282,6 +283,19 @@ function RegistroForm({tipo, cursoSeleccionado = null}) {
       }
     });
 
+    if (tipo === "alumno") {
+
+  const tipoAlumnoSeleccionado =
+    form.elements.tipo_alumno?.value ?? "";
+
+  if (!tipoAlumnoSeleccionado) {
+    nuevosErrores.tipo_alumno =
+      "Este campo es obligatorio.";
+  }
+
+}
+
+
     const interes = form.elements.interes?.value ?? "";
     const errorInteres = validarInteres(interes);
 
@@ -311,6 +325,7 @@ function RegistroForm({tipo, cursoSeleccionado = null}) {
       if (tipo === "alumno") {
         await registrarAlumno(datos);
         form.reset();
+        setTipoAlumno("");
         setInteresSeleccionado(
           cursoSeleccionado
             ? cursoSeleccionado.title
@@ -453,6 +468,72 @@ function RegistroForm({tipo, cursoSeleccionado = null}) {
 
             </div>
           ))}
+
+          {tipo === "alumno" && (
+  <div className="form-field">
+
+    <select
+      name="tipo_alumno"
+      value={tipoAlumno}
+      required
+      aria-invalid={Boolean(errores.tipo_alumno)}
+      aria-describedby={
+        errores.tipo_alumno
+          ? "tipo-alumno-error"
+          : undefined
+      }
+      className={
+        errores.tipo_alumno
+          ? "input-error"
+          : ""
+      }
+      onChange={(event) => {
+        const valor = event.target.value;
+
+        setTipoAlumno(valor);
+
+        setErrores((actuales) => ({
+          ...actuales,
+          tipo_alumno: valor
+            ? ""
+            : "Este campo es obligatorio."
+        }));
+      }}
+      onBlur={(event) => {
+        const valor = event.target.value;
+
+        setErrores((actuales) => ({
+          ...actuales,
+          tipo_alumno: valor
+            ? ""
+            : "Este campo es obligatorio."
+        }));
+      }}
+    >
+      <option value="" disabled>
+        Tipo de alumno
+      </option>
+
+      <option value="Alumno externo">
+        Alumno externo
+      </option>
+
+      <option value="Alumno convenio">
+        Alumno convenio
+      </option>
+    </select>
+
+    {errores.tipo_alumno && (
+      <small
+        id="tipo-alumno-error"
+        className="form-field-error"
+      >
+        {errores.tipo_alumno}
+      </small>
+    )}
+
+  </div>
+)}
 
 
           <div className="form-field">
