@@ -1,5 +1,5 @@
 const SITE_URL =
-  "https://talentia-page.vercel.app";
+  "https://www.escuelatalentiaperu.com";
 
 function setMeta(name, content) {
   let element =

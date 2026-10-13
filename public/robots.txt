@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://talentia-page.vercel.app/sitemap.xml
+Sitemap: https://www.escuelatalentiaperu.com/sitemap.xml
