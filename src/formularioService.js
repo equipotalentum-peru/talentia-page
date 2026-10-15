@@ -49,6 +49,7 @@ export async function registrarEmpresa(datos) {
       email: datos.email,
       telefono: datos.telefono,
       interes: datos.interes,
+      estado: "Pendiente",
       fecha_registro: serverTimestamp()
     }
   );
