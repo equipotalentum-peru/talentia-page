@@ -1,8 +1,10 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import AccesoAlumnoModal from "./AccesoAlumnoModal";
 
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [accesoOpen, setAccesoOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -129,9 +131,16 @@ function Header() {
             Contacto
           </Link>
 
-          <Link className="nav-cta" onClick={closeMenu}>
-            Acceso alumno →
-          </Link>
+          <button
+  type="button"
+  className="nav-cta"
+  onClick={() => {
+    closeMenu();
+    setAccesoOpen(true);
+  }}
+>
+  Acceso alumno →
+</button>
         </nav>
 
         <button
@@ -147,6 +156,12 @@ function Header() {
         </button>
 
       </div>
+
+
+      <AccesoAlumnoModal
+  open={accesoOpen}
+  onClose={() => setAccesoOpen(false)}
+/>
     </header>
   );
 }

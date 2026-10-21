@@ -2948,3 +2948,171 @@ html {
     font-size: 27px;
   }
 }
+
+/* ===== POP-UP ACCESO ALUMNO (PRÓXIMAMENTE) ===== */
+
+.nav-links button.nav-cta {
+  border: 0;
+  cursor: pointer;
+}
+
+.acceso-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(8, 24, 56, 0.55);
+  backdrop-filter: blur(6px);
+  animation: acceso-fade 0.2s ease-out;
+}
+
+.acceso-modal {
+  position: relative;
+  width: min(430px, 100%);
+  padding: 0 28px 28px;
+  text-align: center;
+  border-radius: 24px;
+  background:
+    radial-gradient(circle at 90% -10%, rgba(11, 42, 91, 0.06), transparent 45%),
+    radial-gradient(circle at 5% 0%, rgba(0, 179, 179, 0.16), transparent 45%),
+    #ffffff;
+  box-shadow: 0 30px 70px rgba(8, 24, 56, 0.35);
+  animation: acceso-pop 0.32s cubic-bezier(0.2, 0.9, 0.3, 1.2);
+}
+
+.acceso-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border: 0;
+  border-radius: 50%;
+  color: var(--muted);
+  background: rgba(11, 42, 91, 0.06);
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.acceso-close:hover {
+  color: var(--navy);
+  background: rgba(11, 42, 91, 0.12);
+}
+
+.acceso-icon {
+  display: grid;
+  place-items: center;
+  width: 78px;
+  height: 78px;
+  margin: -39px auto 16px;
+  border: 5px solid #fff;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #12cdd4, var(--turquoise-dark));
+  box-shadow: 0 14px 28px rgba(0, 179, 179, 0.3);
+}
+
+.acceso-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  color: #fff;
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  background: linear-gradient(135deg, var(--turquoise), #12cdd4);
+}
+
+.acceso-modal h2 {
+  margin: 14px 0 10px;
+  color: var(--navy);
+  font-size: 27px;
+  line-height: 1.15;
+  font-weight: 800;
+}
+
+.acceso-modal h2 span {
+  color: var(--turquoise);
+}
+
+.acceso-modal p {
+  max-width: 330px;
+  margin: 0 auto 22px;
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.acceso-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+  padding: 14px 16px 14px 20px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: 0 8px 20px rgba(11, 42, 91, 0.06);
+  color: var(--navy);
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.acceso-row em {
+  padding: 5px 12px;
+  border-radius: 999px;
+  color: var(--muted);
+  background: var(--gray);
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 600;
+}
+
+.acceso-confirm {
+  width: 100%;
+  min-height: 50px;
+  border: 0;
+  border-radius: 14px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  background: var(--navy);
+  box-shadow: 0 12px 24px rgba(11, 42, 91, 0.25);
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.acceso-confirm:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 28px rgba(11, 42, 91, 0.3);
+}
+
+.acceso-confirm:focus-visible,
+.acceso-close:focus-visible {
+  outline: 3px solid var(--turquoise);
+  outline-offset: 3px;
+}
+
+@keyframes acceso-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes acceso-pop {
+  from { opacity: 0; transform: translateY(16px) scale(0.94); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .acceso-overlay,
+  .acceso-modal {
+    animation: none;
+  }
+}
